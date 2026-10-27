@@ -1,0 +1,165 @@
+{
+ "lecture": 1,
+ "title": "Week 1: RL orientation and math refresher",
+ "source": "lecture_01.wav",
+ "duration": 199.7,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 5.76,
+   "text": "the RL problem. An agent interacts with an environment in discrete time. At step T it"
+  },
+  {
+   "start": 5.76,
+   "end": 11.28,
+   "text": "observes a state ST, picks an action AT, and receives a reward RT plus 1 and the next state"
+  },
+  {
+   "start": 11.28,
+   "end": 22.64,
+   "text": "ST plus 1. A trajectory is tau equals S0, A0, R1, S1, A1, R2, dots. An episode is a trajectory"
+  },
+  {
+   "start": 22.64,
+   "end": 29.52,
+   "text": "that ends in a terminal state. Policy pi, amid S, the agent's behavior, a distribution over actions"
+  },
+  {
+   "start": 29.52,
+   "end": 36.88,
+   "text": "given the state. Return, discounted GT equals RT plus 1 plus gamma RT plus 2 plus gamma 2 RT plus"
+  },
+  {
+   "start": 36.88,
+   "end": 43.28,
+   "text": "3 plus dots equals some K equals 0 in pht gamma K RT plus K plus 1, with 0 LE gamma LE1."
+  },
+  {
+   "start": 44.0,
+   "end": 49.84,
+   "text": "It satisfies the recursion GT equals RT plus 1 plus gamma GT plus 1, which every Bellman"
+  },
+  {
+   "start": 49.84,
+   "end": 57.68,
+   "text": "equation builds on. Value functions, V pi, S, equals E pi GT mid ST equals S and Q pi,"
+  },
+  {
+   "start": 57.68,
+   "end": 67.12,
+   "text": "SA, equals E pi GT mid ST equals S, AT equals A. Goal, find pi maximizing V pi, S, for every state."
+  },
+  {
+   "start": 67.84,
+   "end": 72.64,
+   "text": "How RL differs from supervised learning, there are no labels, only a scalar reward."
+  },
+  {
+   "start": 73.44,
+   "end": 78.64,
+   "text": "Feedback is delayed, credit assignment, and the agent's own actions change the data it sees,"
+  },
+  {
+   "start": 78.64,
+   "end": 84.24,
+   "text": "exploration vs exploitation. Probability refresher. Concept formula where"
+  },
+  {
+   "start": 84.24,
+   "end": 90.72,
+   "text": "it appears in RL expectation EX equals some XXP, X, value functions are expected returns line"
+  },
+  {
+   "start": 90.72,
+   "end": 97.36,
+   "text": "array DEX plus by equals AEX plus BY splitting GT equals RT plus 1 plus gamma GT plus 1 inside"
+  },
+  {
+   "start": 97.36,
+   "end": 103.68,
+   "text": "E law of total expectation EX equals YEX mid Y deriving the Bellman equation, condition on AT,"
+  },
+  {
+   "start": 103.68,
+   "end": 112.88,
+   "text": "then ST plus 1, chain rule P, X, Y, equals P, X, P, Y mid X, trajectory probability P,"
+  },
+  {
+   "start": 112.88,
+   "end": 123.52,
+   "text": "tau, equals P, S0, pro t pi, AT mid ST, P, ST plus 1 mid ST, AT, base theorem P, Y mid X,"
+  },
+  {
+   "start": 123.52,
+   "end": 131.44,
+   "text": "equals track P, X mid Y, P, Y, P, X, belief updates. Thompson sampling,"
+  },
+  {
+   "start": 131.44,
+   "end": 138.16,
+   "text": "Bayesian RL log derivative trick Nablat theta P theta, X, equals P theta, X, Nablat theta log"
+  },
+  {
+   "start": 138.16,
+   "end": 146.24,
+   "text": "P theta, X, the policy gradient theorem, week six, variance of RX equals EX2, EX2 Y Monte Carlo"
+  },
+  {
+   "start": 146.24,
+   "end": 152.16,
+   "text": "returns are noisy, Y baselines help worked example, chain rule. Under the chain rule,"
+  },
+  {
+   "start": 152.16,
+   "end": 158.0,
+   "text": "the log probability of a trajectory separates into a policy part and a dynamics part, log P theta,"
+  },
+  {
+   "start": 158.0,
+   "end": 165.44,
+   "text": "tau, equals log P, S0, plus some t log pi theta, AT mid ST, plus some t log P,"
+  },
+  {
+   "start": 165.44,
+   "end": 173.36,
+   "text": "ST plus 1 mid ST, AT. Only the policy term depends on theta, so Nablat theta log P theta, tau,"
+  },
+  {
+   "start": 173.36,
+   "end": 180.24,
+   "text": "equals some t Nablat theta log pi theta, AT mid ST. This is why reinforce needs no model of the environment."
+  },
+  {
+   "start": 181.04,
+   "end": 188.0,
+   "text": "Set up requirements.text installs gymnasium with box 2d, pytorch, number py and matplotlib."
+  },
+  {
+   "start": 188.72,
+   "end": 196.08,
+   "text": "Every script in script slash runs on a CPU. Reading, Sutton and Barto, CH1, Lillian Wen,"
+  },
+  {
+   "start": 196.08,
+   "end": 199.6,
+   "text": "A, long, peak into reinforcement learning."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The RL problem",
+   "start": 0.0,
+   "end": 81.23
+  },
+  {
+   "heading": "Probability refresher",
+   "start": 81.23,
+   "end": 180.99
+  },
+  {
+   "heading": "Setup",
+   "start": 180.99,
+   "end": 199.68
+  }
+ ]
+}

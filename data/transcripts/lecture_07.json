@@ -1,0 +1,225 @@
+{
+ "lecture": 7,
+ "title": "Week 7: DDPG, RLHF and multi-agent RL",
+ "source": "lecture_07.wav",
+ "duration": 258.8,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 8.0,
+   "text": "d d p g, continuous actions, r l slash d d p g dot pi. d q n needs max a q, s a, which is"
+  },
+  {
+   "start": 8.0,
+   "end": 14.4,
+   "text": "intractable for continuous a. d d p g learns a deterministic actor mu phi, s, that approximates"
+  },
+  {
+   "start": 14.4,
+   "end": 19.44,
+   "text": "the arg max, trained by the deterministic policy gradient, nebla phi j approximate"
+  },
+  {
+   "start": 19.44,
+   "end": 28.48,
+   "text": "e's big nebla a q, s, a, theta, big a equals mu phi, s, nebla phi mu phi, s, big. In code"
+  },
+  {
+   "start": 28.48,
+   "end": 36.88,
+   "text": "this is just actor loss equals q, s, mu, s, dot mean. Critic target, y equals r plus gamma,"
+  },
+  {
+   "start": 36.88,
+   "end": 44.64,
+   "text": "one, d, q, s, mu, s, using target networks updated by polyac averaging, theta left arrow"
+  },
+  {
+   "start": 44.64,
+   "end": 52.96,
+   "text": "totheta plus, one tau, theta with tau equals 0.005. Exploration, Gaussian noise on the action,"
+  },
+  {
+   "start": 53.04,
+   "end": 55.68,
+   "text": "since a deterministic policy never explores on its own."
+  },
+  {
+   "start": 56.56,
+   "end": 63.28,
+   "text": "Pendulum v1, 30k steps, 3 seeds greedy return 146.7 plus or minus 2.3."
+  },
+  {
+   "start": 63.92,
+   "end": 68.48,
+   "text": "The pendulum swings up and balances, a random policy scores roughly 1200."
+  },
+  {
+   "start": 69.2,
+   "end": 74.64,
+   "text": "r l h f, reinforcement learning from human feedback, r l slash r l h f dot pi."
+  },
+  {
+   "start": 75.28,
+   "end": 80.56,
+   "text": "Used to align large language models. There are three stages, supervised fine-tuning"
+  },
+  {
+   "start": 80.56,
+   "end": 84.32,
+   "text": "rightward arrow reward model from human preferences rightward arrow r l against that"
+  },
+  {
+   "start": 84.32,
+   "end": 89.52,
+   "text": "reward with a k l penalty. The toy version here keeps the two r l specific ideas,"
+  },
+  {
+   "start": 89.52,
+   "end": 92.8,
+   "text": "with responses represented as 20 arms with hidden true quality."
+  },
+  {
+   "start": 93.52,
+   "end": 97.92,
+   "text": "One Bradley, teary reward model. Humans compare two responses."
+  },
+  {
+   "start": 98.64,
+   "end": 105.6,
+   "text": "We model p, i suck j, equals sigma, r i, r j, and fit hat r by maximizing the log likelihood"
+  },
+  {
+   "start": 105.6,
+   "end": 111.2,
+   "text": "sum log sigma, hat r w, hat r l, which is logistic regression on reward differences."
+  },
+  {
+   "start": 111.92,
+   "end": 114.4,
+   "text": "Rewards are identifiable only up to a constant."
+  },
+  {
+   "start": 115.12,
+   "end": 122.96,
+   "text": "Comparisons 5100, 200 and 5500, 1,000, 2,500, 5,000 percent of response pairs ranked correctly"
+  },
+  {
+   "start": 122.96,
+   "end": 133.2,
+   "text": "72.077.585.790.293.295.696.72. k l regularized policy."
+  },
+  {
+   "start": 134.0,
+   "end": 141.04,
+   "text": "Maximizing e pi hat r, beta k l, pi, pi rev, has the closed form solution pi a,"
+  },
+  {
+   "start": 141.04,
+   "end": 149.76,
+   "text": "protopi rev, a, exp hat r, a, slash beta. Derivation, the objective equals beta k l,"
+  },
+  {
+   "start": 149.76,
+   "end": 155.36,
+   "text": "pi, pi, plus constant. The k l term keeps the policy close to the reference model."
+  },
+  {
+   "start": 156.08,
+   "end": 159.68,
+   "text": "That limits reward hacking, i.e. over exploiting errors in hat r."
+  },
+  {
+   "start": 160.4,
+   "end": 167.92,
+   "text": "At beta equals one the true expected reward rises from 0.18, reference to 0.41, for k l equals"
+  },
+  {
+   "start": 167.92,
+   "end": 172.72,
+   "text": "0.28 nats. Smaller beta moves along the curve towards the best response."
+  },
+  {
+   "start": 173.6,
+   "end": 180.0,
+   "text": "Multi-agent RL and Game Theory 101, RL slash moral.pi. With several learners,"
+  },
+  {
+   "start": 180.0,
+   "end": 184.16,
+   "text": "each agent's environment is non-stationary, because the other agents are learning too."
+  },
+  {
+   "start": 184.88,
+   "end": 190.56,
+   "text": "The solution concept becomes the Nash equilibrium, no player can gain by changing strategy unilaterally."
+  },
+  {
+   "start": 191.28,
+   "end": 197.28,
+   "text": "Game pure Nash mixed Nash, in difference conditions, learning result prisoners dilemma, defect,"
+  },
+  {
+   "start": 197.28,
+   "end": 203.92,
+   "text": "defect, non-independent queue learners defect 95% of the time, epsilon equals 0.1 exploration"
+  },
+  {
+   "start": 203.92,
+   "end": 209.2,
+   "text": "accounts for the rest, even though, c, c, pays both players more matching pennies"
+  },
+  {
+   "start": 209.2,
+   "end": 215.6,
+   "text": "none each plays heads with p equals 0.5 fictitious play converges to empirical frequencies of 0.498"
+  },
+  {
+   "start": 215.6,
+   "end": 221.44,
+   "text": "slash 0.498 the mixed equilibrium comes from making the opponent indifferent, if player two plays heads"
+  },
+  {
+   "start": 221.44,
+   "end": 230.16,
+   "text": "with PROBQ, then player one is indifferent when q a 0 0 plus 1 q a 0 1 equals q a 10 plus"
+  },
+  {
+   "start": 230.16,
+   "end": 239.44,
+   "text": "1 q a 11, which gives q equals one half reading lilycrap et al d dpg 2016"
+  },
+  {
+   "start": 239.44,
+   "end": 245.2,
+   "text": "christiano et al deep RL from human preferences 2017"
+  },
+  {
+   "start": 245.2,
+   "end": 254.08,
+   "text": "wang et al instruct gpt 2022 albrecht christiano's and shafer multi-agent reinforcement learning"
+  },
+  {
+   "start": 254.08,
+   "end": 258.24,
+   "text": "marl book ch1 to 4, shimmin wights and's marl seminar"
+  }
+ ],
+ "sections": [
+  {
+   "heading": "DDPG: continuous actions ( rl/ddpg.py )",
+   "start": 0.0,
+   "end": 69.19
+  },
+  {
+   "heading": "RLHF: Reinforcement Learning from Human Feedback ( rl/rlhf.py )",
+   "start": 69.19,
+   "end": 173.56
+  },
+  {
+   "heading": "Multi-agent RL and game theory 101 ( rl/marl.py )",
+   "start": 173.56,
+   "end": 258.82
+  }
+ ]
+}

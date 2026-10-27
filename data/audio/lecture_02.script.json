@@ -1,0 +1,33 @@
+{
+ "lecture": 2,
+ "title": "Week 2: MDPs, Bellman equations and multi-armed bandits",
+ "duration": 257.8,
+ "sections": [
+  {
+   "heading": "Markov decision processes",
+   "start": 0.0,
+   "end": 27.42
+  },
+  {
+   "heading": "Bellman expectation equation",
+   "start": 27.42,
+   "end": 76.19
+  },
+  {
+   "heading": "The Bellman operator is a gamma -contraction",
+   "start": 76.19,
+   "end": 139.8
+  },
+  {
+   "heading": "Bellman optimality equation",
+   "start": 139.8,
+   "end": 172.91
+  },
+  {
+   "heading": "Multi-armed bandits ( rl/bandits.py )",
+   "start": 172.91,
+   "end": 257.76
+  }
+ ],
+ "text": "Markov decision processes. An MDP is a tuple (S, A, p, r, gamma) with dynamics p(s', r mid s, a) . The Markov property says the future depends on the past only through the present state: Pr(S t+1 , R t+1 mid S t, A t, S t-1 , dots) = Pr(S t+1 , R t+1 mid S t, A t) . Bellman expectation equation. Write G t = R t+1 + gamma G t+1 and condition on A t and then S t+1 (law of total expectation): v pi(s) = sum a pi(a mid s) sum s', r p(s', r mid s, a) ,big[r + gamma , v pi(s')big]. In matrix form, with P pi[s,s'] = sum a pi(a mid s) ,p(s' mid s,a) and r pi[s] = sum a pi(a mid s) ,r(s,a) : v pi = r pi + gamma P pi v pi quadLongrightarrowquad v pi = (I - gamma P pi) -1 r pi . I - gamma P pi is invertible for gamma < 1 , because P pi is (sub-)stochastic, so its spectral radius is at most 1. The Bellman operator is a gamma -contraction. Define (T pi v)(s) = r pi(s) + gamma (P pi v)(s) . For any u, v : T pi u - T pi v infty = gamma P pi (u - v) infty le gamma u - v infty , since each row of P pi is a probability vector. By the Banach fixed-point theorem, iterating v k+1 = T pi v k from any v 0 converges to the unique fixed point v pi , with error at most gamma k v 0 - v pi infty . Verified numerically ( scripts/run foundations.py , FrozenLake 4×4, uniform random policy, gamma = 0.9): - The closed-form solve and iterative evaluation agree to 2.7 times 10 -12 after 79 sweeps. - The worst observed per-sweep ratio v k+1 -v k / v k - v k-1 is 0.776 ≤ gamma = 0.9 . It is below gamma because some probability mass is absorbed in the holes and goal. Bellman optimality equation. v (s) = max a sum s', r p(s', r mid s, a)big[r + gamma v (s')big], qquad q (s,a) = sum s', r p(s', r mid s, a)big[r + gamma max a' q (s', a')big]. The max makes the operator non-linear, but it is still a gamma -contraction (using max f - max g le max f - g ). That is why value iteration converges (Week 3). Multi-armed bandits ( rl/bandits.py ). A one-state MDP: each of k arms has an unknown mean reward q (a) . Estimates use the incremental sample average Q n+1 = Q n + frac 1 n big(R n - Q nbig) qquad (new estimate = old + step size times error), the same \"target − estimate\" pattern used by every TD method later. Strategy Rule 10-armed testbed: % optimal action (steps 900–1000) Avg reward Greedy argmax a Q(a) 34.7% 1.02 epsilon -greedy, epsilon = 0.01 random arm with prob. epsilon 58.4% 1.29 epsilon -greedy, epsilon = 0.1 random arm with prob. epsilon 80.0% 1.37 Optimistic Q 0 = 5 , greedy optimism drives early exploration 68.9% 1.42 UCB, c = 2 argmax a big[Q(a) + csqrt ln t / N(a) big] 85.6% 1.49 (2,000 independent runs × 1,000 steps.) Pure greedy locks onto a sub-optimal arm in about two thirds of runs. A little exploration more than doubles the optimal-action rate. UCB explores directionally , towards uncertain arms, and does best. Reading: Sutton & Barto, Ch. 2–3."
+}

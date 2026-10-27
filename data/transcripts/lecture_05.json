@@ -1,0 +1,210 @@
+{
+ "lecture": 5,
+ "title": "Week 5: Deep Q-Networks",
+ "source": "lecture_05.wav",
+ "duration": 239.1,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 6.56,
+   "text": "Week 5, DeepQ networks. This note follows my DQN presentation outline, what RL is rightward"
+  },
+  {
+   "start": 6.56,
+   "end": 11.44,
+   "text": "arrow MDP's rightward arrow Q-learning rightward arrow YDQN rightward arrow architecture rightward"
+  },
+  {
+   "start": 11.44,
+   "end": 15.84,
+   "text": "arrow experience replay rightward arrow target network rightward arrow training algorithm rightward"
+  },
+  {
+   "start": 15.84,
+   "end": 22.08,
+   "text": "arrow applications rightward arrow limitations from Q-learning to DQN. Replace the table with"
+  },
+  {
+   "start": 22.08,
+   "end": 29.84,
+   "text": "a neural network Q, S, A, theta, and minimize the squared TD error, L, theta, equals E, S,"
+  },
+  {
+   "start": 29.84,
+   "end": 40.96,
+   "text": "A, R, S, SIMD big big, under brace R plus gamma, 1, D, max a Q, S, A, theta Y, Q, S, A, theta,"
+  },
+  {
+   "start": 40.96,
+   "end": 47.92,
+   "text": "big, 2 big. Architecture, RL slash DQN dot pi input is the four dim cart pole state, then"
+  },
+  {
+   "start": 47.92,
+   "end": 53.52,
+   "text": "two hidden layers of 128 units with real you, and the output is one Q value per action."
+  },
+  {
+   "start": 54.24,
+   "end": 59.68,
+   "text": "All action values come from a single forward pass. Huber loss instead of squared error,"
+  },
+  {
+   "start": 59.68,
+   "end": 65.76,
+   "text": "plus gradient norm clipping at 10, so outlier TD errors cannot blow up an update. D equals"
+  },
+  {
+   "start": 65.76,
+   "end": 71.04,
+   "text": "one only for true termination. A time limit truncation is not terminal, so the target"
+  },
+  {
+   "start": 71.04,
+   "end": 77.44,
+   "text": "still bootstraps. Why the two tricks are needed, the deadly triad. Function approximation plus"
+  },
+  {
+   "start": 77.52,
+   "end": 82.8,
+   "text": "bootstrapping plus off policy learning can diverge, Sutton and Bartow, section 11.3."
+  },
+  {
+   "start": 83.52,
+   "end": 89.28,
+   "text": "DQN adds two stabilizers, one experience replays stores transitions in a buffer and samples random"
+  },
+  {
+   "start": 89.28,
+   "end": 94.88,
+   "text": "mini batches. This breaks the strong correlation between consecutive transitions, so gradient"
+  },
+  {
+   "start": 94.88,
+   "end": 101.2,
+   "text": "steps are closer to IID, and it reuses each transition many times. Two target network theta,"
+  },
+  {
+   "start": 101.2,
+   "end": 107.04,
+   "text": "a copy of theta refreshed every C steps. Without it, every update moves the target it is chasing."
+  },
+  {
+   "start": 107.92,
+   "end": 113.2,
+   "text": "Double DQN, Van Hasselt ETAL the max over noisy estimates is biased upward,"
+  },
+  {
+   "start": 113.2,
+   "end": 119.2,
+   "text": "E max a hat QGE max AE hat Q. The fixes to let the online network choose the action and the target"
+  },
+  {
+   "start": 119.2,
+   "end": 127.84,
+   "text": "network evaluate it, y equals r plus gamma Q, s, arg max a Q, s a, theta, theta. Results on cart"
+  },
+  {
+   "start": 127.84,
+   "end": 133.44,
+   "text": "bowl V1, 60k steps, three seeds, script slash run deep.py ablation."
+  },
+  {
+   "start": 134.16,
+   "end": 144.32,
+   "text": "Variant training return greedy eval, max 500, DQN, replay plus target, 292.6 plus or minus 101.2,"
+  },
+  {
+   "start": 144.32,
+   "end": 157.44,
+   "text": "254.7 plus or minus 178.4 double DQN 265.2 plus or minus 42.1447.2 plus or minus 40.4 no replay buffer"
+  },
+  {
+   "start": 157.44,
+   "end": 168.8,
+   "text": "165.3 plus or minus 69.4 139.4 plus or minus 24.0 no target network 9.3 plus or minus 0.19.2"
+  },
+  {
+   "start": 168.8,
+   "end": 175.44,
+   "text": "plus or minus 0.1 the no target network run diverged. At 20k steps its Q value for the start state was"
+  },
+  {
+   "start": 175.44,
+   "end": 181.76,
+   "text": "about 8.4 times 1 0, while a correctly bounded value is at most sum k gamma k equals 100,"
+  },
+  {
+   "start": 181.76,
+   "end": 187.36,
+   "text": "the network with the target estimated about 34. The resulting policy fails in about 9 steps."
+  },
+  {
+   "start": 188.16,
+   "end": 193.84,
+   "text": "That is the deadly triad in action. Hyperparameter sensitivity, epsilon decay length,"
+  },
+  {
+   "start": 193.84,
+   "end": 198.56,
+   "text": "batch size, target update period C, is in the main readme under week 5 tuning."
+  },
+  {
+   "start": 199.28,
+   "end": 206.0,
+   "text": "Applications and limitations. Applications, Atari from pixels, the original DQN paper,"
+  },
+  {
+   "start": 206.0,
+   "end": 210.24,
+   "text": "recommendation, resource scheduling, and any problem with discrete actions."
+  },
+  {
+   "start": 211.04,
+   "end": 217.12,
+   "text": "Limitations, discrete actions only. A max over continuous actions is itself an optimization"
+  },
+  {
+   "start": 217.12,
+   "end": 225.44,
+   "text": "problem, which leads to DDPG. Over estimation bias, hence double DQN. Sample hungry and sensitive to"
+  },
+  {
+   "start": 225.44,
+   "end": 230.64,
+   "text": "hyper parameters, results vary a lot across seeds, as the plus or minus values above show."
+  },
+  {
+   "start": 230.64,
+   "end": 238.96,
+   "text": "Reading, NETAL, Human Level Control Through Deep Reinforcement Learning, Nature, 2015."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Week 5: Deep Q-Networks",
+   "start": 0.0,
+   "end": 18.92
+  },
+  {
+   "heading": "From Q-learning to DQN",
+   "start": 18.92,
+   "end": 72.7
+  },
+  {
+   "heading": "Why the two tricks are needed: the \"deadly triad\"",
+   "start": 72.7,
+   "end": 127.0
+  },
+  {
+   "heading": "Results on CartPole-v1 (60k steps, 3 seeds; scripts/run deep.py ablation )",
+   "start": 127.0,
+   "end": 199.28
+  },
+  {
+   "heading": "Applications and limitations",
+   "start": 199.28,
+   "end": 239.08
+  }
+ ]
+}

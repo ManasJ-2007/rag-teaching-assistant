@@ -1,0 +1,145 @@
+{
+ "lecture": 8,
+ "title": "Week 8: Final project, what actually makes deep RL work?",
+ "source": "lecture_08.wav",
+ "duration": 138.6,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 4.48,
+   "text": "Week 8, final project, what actually makes Deep RL work."
+  },
+  {
+   "start": 4.48,
+   "end": 9.52,
+   "text": "Question. Which design choices matter for value-based and policy-based Deep RL,"
+  },
+  {
+   "start": 9.52,
+   "end": 12.48,
+   "text": "and how sensitive are they to hyperparameters and random seeds?"
+  },
+  {
+   "start": 13.36,
+   "end": 13.76,
+   "text": "Setup."
+  },
+  {
+   "start": 14.56,
+   "end": 22.32,
+   "text": "Environments, Cart Bowl V1, the main test bed, discrete, 4-dim state, solved at 475 plus,"
+  },
+  {
+   "start": 22.32,
+   "end": 28.56,
+   "text": "Lunar Lander V3, 8-dim state, 4 actions, solved at greater than or equal to 200,"
+  },
+  {
+   "start": 28.56,
+   "end": 33.92,
+   "text": "Pendulum V1, continuous action. Every configuration is trained with three seeds."
+  },
+  {
+   "start": 34.64,
+   "end": 41.2,
+   "text": "Results report training return, last 20 episodes, and greedy evaluation over 20 fresh episodes,"
+  },
+  {
+   "start": 41.2,
+   "end": 46.48,
+   "text": "as mean plus or minus STD experiments script one DQN component ablation,"
+  },
+  {
+   "start": 46.48,
+   "end": 52.4,
+   "text": "no replay slash no target network slash double DQN run deep.py ablation to DQN hyperparameter"
+  },
+  {
+   "start": 52.4,
+   "end": 58.72,
+   "text": "sensitivity, epsilon decay length, batch size, target update period run deep.py DQN tuning"
+  },
+  {
+   "start": 58.72,
+   "end": 64.08,
+   "text": "three reinforce with VS without a learned baseline, plus gradient variance measurement run deep.py"
+  },
+  {
+   "start": 64.08,
+   "end": 68.48,
+   "text": "reinforce, PG variance.py for value-based VS policy-based."
+  },
+  {
+   "start": 69.2,
+   "end": 76.64,
+   "text": "On Cart Bowl, DQN, reinforce, A2C, PPO run deep.py Cart Bowl V scaling up,"
+  },
+  {
+   "start": 76.64,
+   "end": 84.0,
+   "text": "reinforce VS A2C, VS PPO on Lunar Lander, DDPG on pendulum run deep.py lunar.pg pendulum"
+  },
+  {
+   "start": 84.0,
+   "end": 88.8,
+   "text": "all tables and figures are in the main readme. Observations and failure cases,"
+  },
+  {
+   "start": 88.8,
+   "end": 94.4,
+   "text": "removing the target network does not just slow learning, it diverges. Q values grew by about"
+  },
+  {
+   "start": 94.4,
+   "end": 99.6,
+   "text": "five orders of magnitude above their theoretical bound. The plus or minus columns are large for"
+  },
+  {
+   "start": 99.6,
+   "end": 104.32,
+   "text": "DQN and A2C, seed variance is often larger than the effect of a hyperparameter."
+  },
+  {
+   "start": 104.96,
+   "end": 110.16,
+   "text": "Reporting a single run would be misleading. PPO was the most robust default algorithm,"
+  },
+  {
+   "start": 110.16,
+   "end": 113.36,
+   "text": "solving Cart Bowl and Lunar Lander on every seed without tuning."
+  },
+  {
+   "start": 114.08,
+   "end": 118.4,
+   "text": "Reinforce can reach a perfect greedy policy while its training curve still oscillates,"
+  },
+  {
+   "start": 118.4,
+   "end": 121.28,
+   "text": "because the policy keeps being kicked by high variance updates."
+  },
+  {
+   "start": 122.08,
+   "end": 128.24,
+   "text": "Limitations, only three seeds and small compute budgets, CPU, so confidence intervals are wide."
+  },
+  {
+   "start": 128.96,
+   "end": 132.32,
+   "text": "One at a time hyperparameter sweeps misinteractions between settings."
+  },
+  {
+   "start": 133.2,
+   "end": 138.4,
+   "text": "Same network sizes everywhere, with no tuning per algorithm beyond standard defaults."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Week 8: Final project, what actually makes deep RL work?",
+   "start": 0.0,
+   "end": 138.61
+  }
+ ]
+}

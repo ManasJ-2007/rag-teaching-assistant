@@ -1,0 +1,130 @@
+{
+  "questions": 46,
+  "chunks": {
+    "notes": 47,
+    "transcripts": 53
+  },
+  "retrieval": {
+    "notes": {
+      "BM25 (from scratch)": {
+        "section_hit@1": 0.782608695652174,
+        "section_hit@3": 0.9130434782608695,
+        "section_hit@5": 0.9565217391304348,
+        "section_mrr": 0.8545548654244307,
+        "lecture_hit@1": 0.8260869565217391,
+        "lecture_hit@3": 0.9565217391304348,
+        "lecture_hit@5": 1.0,
+        "lecture_mrr": 0.8949275362318841,
+        "latency_ms": 0.054500007536262274
+      },
+      "Dense: MiniLM-L6": {
+        "section_hit@1": 0.7391304347826086,
+        "section_hit@3": 0.8695652173913043,
+        "section_hit@5": 0.9347826086956522,
+        "section_mrr": 0.819047619047619,
+        "lecture_hit@1": 0.8695652173913043,
+        "lecture_hit@3": 0.9347826086956522,
+        "lecture_hit@5": 0.9565217391304348,
+        "lecture_mrr": 0.9131297446514838,
+        "latency_ms": 5.904500081669539
+      },
+      "Dense: BGE-small": {
+        "section_hit@1": 0.782608695652174,
+        "section_hit@3": 0.9130434782608695,
+        "section_hit@5": 0.9347826086956522,
+        "section_mrr": 0.8496376811594203,
+        "lecture_hit@1": 0.8695652173913043,
+        "lecture_hit@3": 0.9782608695652174,
+        "lecture_hit@5": 0.9782608695652174,
+        "lecture_mrr": 0.9239130434782609,
+        "latency_ms": 11.73354999627918
+      },
+      "Hybrid: BM25 + BGE (RRF)": {
+        "section_hit@1": 0.8695652173913043,
+        "section_hit@3": 0.9565217391304348,
+        "section_hit@5": 0.9565217391304348,
+        "section_mrr": 0.9094202898550725,
+        "lecture_hit@1": 0.9565217391304348,
+        "lecture_hit@3": 0.9782608695652174,
+        "lecture_hit@5": 0.9782608695652174,
+        "lecture_mrr": 0.967391304347826,
+        "latency_ms": 11.868850036989897
+      },
+      "Hybrid + cross-encoder rerank": {
+        "section_hit@1": 0.9130434782608695,
+        "section_hit@3": 0.9565217391304348,
+        "section_hit@5": 0.9565217391304348,
+        "section_mrr": 0.9375,
+        "lecture_hit@1": 0.9565217391304348,
+        "lecture_hit@3": 0.9782608695652174,
+        "lecture_hit@5": 0.9782608695652174,
+        "lecture_mrr": 0.9664855072463768,
+        "latency_ms": 490.9568000002764
+      }
+    },
+    "transcripts": {
+      "BM25 (from scratch)": {
+        "section_hit@1": 0.5869565217391305,
+        "section_hit@3": 0.8695652173913043,
+        "section_hit@5": 0.9565217391304348,
+        "section_mrr": 0.7333333333333334,
+        "lecture_hit@1": 0.7391304347826086,
+        "lecture_hit@3": 0.9565217391304348,
+        "lecture_hit@5": 1.0,
+        "lecture_mrr": 0.8478260869565217,
+        "latency_ms": 0.06455002585425973
+      },
+      "Dense: MiniLM-L6": {
+        "section_hit@1": 0.6304347826086957,
+        "section_hit@3": 0.8695652173913043,
+        "section_hit@5": 0.8695652173913043,
+        "section_mrr": 0.7373188405797102,
+        "lecture_hit@1": 0.8043478260869565,
+        "lecture_hit@3": 0.9565217391304348,
+        "lecture_hit@5": 0.9565217391304348,
+        "lecture_mrr": 0.8722826086956522,
+        "latency_ms": 6.31384999724105
+      },
+      "Dense: BGE-small": {
+        "section_hit@1": 0.6304347826086957,
+        "section_hit@3": 0.8260869565217391,
+        "section_hit@5": 0.8478260869565217,
+        "section_mrr": 0.7234213250517598,
+        "lecture_hit@1": 0.782608695652174,
+        "lecture_hit@3": 0.8913043478260869,
+        "lecture_hit@5": 0.9130434782608695,
+        "lecture_mrr": 0.8471273291925465,
+        "latency_ms": 12.290499929804355
+      },
+      "Hybrid: BM25 + BGE (RRF)": {
+        "section_hit@1": 0.6086956521739131,
+        "section_hit@3": 0.9130434782608695,
+        "section_hit@5": 0.9347826086956522,
+        "section_mrr": 0.7538302277432712,
+        "lecture_hit@1": 0.8043478260869565,
+        "lecture_hit@3": 0.9565217391304348,
+        "lecture_hit@5": 1.0,
+        "lecture_mrr": 0.8829710144927535,
+        "latency_ms": 12.231549946591258
+      },
+      "Hybrid + cross-encoder rerank": {
+        "section_hit@1": 0.7608695652173914,
+        "section_hit@3": 0.8913043478260869,
+        "section_hit@5": 0.9565217391304348,
+        "section_mrr": 0.8387681159420289,
+        "lecture_hit@1": 0.9130434782608695,
+        "lecture_hit@3": 0.9565217391304348,
+        "lecture_hit@5": 0.9782608695652174,
+        "lecture_mrr": 0.9402173913043478,
+        "latency_ms": 395.5815499648452
+      }
+    }
+  },
+  "speech_to_text": {
+    "model": "faster-whisper base.en (int8, CPU)",
+    "audio_minutes": 28.9,
+    "words": 3896,
+    "wer": 0.2561601642710472,
+    "real_time_factor": 3.4182458151447577
+  }
+}

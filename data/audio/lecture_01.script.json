@@ -1,0 +1,23 @@
+{
+ "lecture": 1,
+ "title": "Week 1: RL orientation and math refresher",
+ "duration": 199.7,
+ "sections": [
+  {
+   "heading": "The RL problem",
+   "start": 0.0,
+   "end": 81.23
+  },
+  {
+   "heading": "Probability refresher",
+   "start": 81.23,
+   "end": 180.99
+  },
+  {
+   "heading": "Setup",
+   "start": 180.99,
+   "end": 199.68
+  }
+ ],
+ "text": "The RL problem. An agent interacts with an environment in discrete time. At step t it observes a state S t , picks an action A t , and receives a reward R t+1 and the next state S t+1 . A trajectory is tau = (S 0, A 0, R 1, S 1, A 1, R 2, dots) . An episode is a trajectory that ends in a terminal state. - Policy pi(a mid s) : the agent's behaviour, a distribution over actions given the state. - Return (discounted): G t = R t+1 + gamma R t+2 + gamma 2 R t+3 + dots = sum k=0 infty gamma k R t+k+1 , with 0 le gamma le 1 . It satisfies the recursion G t = R t+1 + gamma G t+1 , which every Bellman equation builds on. - Value functions: v pi(s) = E pi[G t mid S t = s] and q pi(s,a) = E pi[G t mid S t = s, A t = a] . - Goal: find pi maximising v pi(s) for every state. How RL differs from supervised learning: there are no labels, only a scalar reward. Feedback is delayed (credit assignment), and the agent's own actions change the data it sees ( exploration vs exploitation ). Probability refresher. Concept Formula Where it appears in RL Expectation E[X] = sum x x ,p(x) value functions are expected returns Linearity E[aX + bY] = aE[X] + bE[Y] splitting G t = R t+1 + gamma G t+1 inside E Law of total expectation E[X] = E Y[E[X mid Y]] deriving the Bellman equation (condition on A t , then S t+1 ) Chain rule p(x, y) = p(x) ,p(y mid x) trajectory probability p(tau) = p(s 0)prod t pi(a t mid s t) ,p(s t+1 mid s t, a t) Bayes' theorem p(y mid x) = dfrac p(x mid y) ,p(y) p(x) belief updates, Thompson sampling, Bayesian RL Log-derivative trick nabla theta p theta(x) = p theta(x) ,nabla theta log p theta(x) the policy-gradient theorem (Week 6) Variance Var[X] = E[X 2] - E[X] 2 why Monte-Carlo returns are noisy, why baselines help Worked example (chain rule). Under the chain rule, the log-probability of a trajectory separates into a policy part and a dynamics part: log p theta(tau) = log p(s 0) + sum t log pi theta(a t mid s t) + sum t log p(s t+1 mid s t, a t). Only the policy term depends on theta , so nabla theta log p theta(tau) = sum t nabla theta log pi theta(a t mid s t) . This is why REINFORCE needs no model of the environment. Setup. requirements.txt installs Gymnasium (with Box2D), PyTorch, NumPy and Matplotlib. Every script in scripts/ runs on a CPU. Reading: Sutton & Barto, Ch. 1; Lilian Weng, \"A (Long) Peek into Reinforcement Learning\"."
+}

@@ -1,0 +1,205 @@
+{
+ "lecture": 2,
+ "title": "Week 2: MDPs, Bellman equations and multi-armed bandits",
+ "source": "lecture_02.wav",
+ "duration": 257.8,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 10.0,
+   "text": "Markov decision processes. An MDP is a tuple, S, A, P, R, gamma, with dynamics P, S, R mid-S,"
+  },
+  {
+   "start": 10.0,
+   "end": 15.28,
+   "text": "A. The Markov property says the future depends on the past only through the present state,"
+  },
+  {
+   "start": 15.28,
+   "end": 26.64,
+   "text": "PR, ST plus 1, RT plus 1 mid-ST, AT, ST1, dots, equals PR, ST plus 1, RT plus 1 mid-ST, AT."
+  },
+  {
+   "start": 27.36,
+   "end": 33.2,
+   "text": "Bellman expectation equation. Right GT equals RT plus 1 plus gamma GT plus 1"
+  },
+  {
+   "start": 33.2,
+   "end": 39.76,
+   "text": "and condition on AT and then ST plus 1, law of total expectation V pi, S, equals sum of pi,"
+  },
+  {
+   "start": 39.76,
+   "end": 49.84,
+   "text": "amid S, sum S, Rp, S, R mid-S, A, big R plus gamma, V pi, S, big. In matrix form,"
+  },
+  {
+   "start": 49.84,
+   "end": 56.72,
+   "text": "with P pi, S, S equals sum of pi, amid S, P, S mid-S, A, and r pi, S equals sum of pi,"
+  },
+  {
+   "start": 56.72,
+   "end": 64.0,
+   "text": "amid S, R, S, A, V pi equals r pi plus gamma P pi, V pi, quad-long-right arrow-quid V pi equals,"
+  },
+  {
+   "start": 64.0,
+   "end": 72.4,
+   "text": "I, gamma P pi, minus 1 r pi. I, gamma P pi is invertible for gamma 1, because P pi is, sub,"
+  },
+  {
+   "start": 72.4,
+   "end": 78.24,
+   "text": "stochastic, so its spectral radius is at most 1. The Bellman operator is a gamma contraction."
+  },
+  {
+   "start": 78.96,
+   "end": 89.68,
+   "text": "Define, T pi V, S, equals R pi, S, plus gamma, P pi V, S. For any U, V, T pi U, T pi V,"
+  },
+  {
+   "start": 89.68,
+   "end": 97.12,
+   "text": "in T equals gamma P pi, U, V, in TLE gamma U, V in T, since each row of P pi is a probability"
+  },
+  {
+   "start": 97.12,
+   "end": 103.44,
+   "text": "vector. By the Banach fixed-point theorem, iterating Vk plus 1 equals T pi Vk from any V0"
+  },
+  {
+   "start": 103.44,
+   "end": 108.8,
+   "text": "converges to the unique fixed-point V pi, with error at most gamma Kv0, V pi in T."
+  },
+  {
+   "start": 109.52,
+   "end": 115.28,
+   "text": "Verified numerically, script slash run foundations.py, frozen lake four times four,"
+  },
+  {
+   "start": 115.28,
+   "end": 121.28,
+   "text": "uniform random policy, gamma equals 0.9, the closed-form solve and iterative evaluation"
+  },
+  {
+   "start": 121.28,
+   "end": 128.72,
+   "text": "agreed to 2.7 times 10 minus 12 after 79 sweeps. The worst observed per sweep ratio Vk plus 1 Vk"
+  },
+  {
+   "start": 129.68,
+   "end": 137.2,
+   "text": "Vk1 is 0.776 less than or equal to gamma equals 0.9. It is below gamma because some probability"
+  },
+  {
+   "start": 137.2,
+   "end": 144.88,
+   "text": "mass is absorbed in the holes and goal. Bellman-Optimal ID equation. V, S, equals max of sum S,"
+  },
+  {
+   "start": 144.88,
+   "end": 156.88,
+   "text": "R p, S, R mid S, A, big R plus gamma V, S, big, du add q, S A, equals sum S, R p, S, R mid S, A,"
+  },
+  {
+   "start": 156.96,
+   "end": 164.0,
+   "text": "big R plus gamma max of q, S, A, big. The max makes the operator nonlinear, but it is still"
+  },
+  {
+   "start": 164.0,
+   "end": 171.6,
+   "text": "a gamma contraction, using max F, max GLE max F, G. That is why value iteration converges,"
+  },
+  {
+   "start": 171.6,
+   "end": 179.12,
+   "text": "week three. Multi-armed bandits are L slash bandits.py. A one-state MDP, each of K-arms has an"
+  },
+  {
+   "start": 179.12,
+   "end": 185.6,
+   "text": "unknown mean reward q, A. Estimates use the incremental sample average qN plus 1 equals qN plus"
+  },
+  {
+   "start": 185.6,
+   "end": 193.04,
+   "text": "F1N big, Rn, qN big, du add, new estimate equals old plus step size times error, the same"
+  },
+  {
+   "start": 193.04,
+   "end": 199.2,
+   "text": "target estimate pattern used by every TD method later. Strategy rule 10-armed test bed, percent"
+  },
+  {
+   "start": 199.2,
+   "end": 208.88,
+   "text": "optimal action, steps 900 to 1000, average reward greedy arg max Aq, A, 34.7% 1.02 epsilon greedy,"
+  },
+  {
+   "start": 208.96,
+   "end": 217.44,
+   "text": "epsilon equals 0.01 random arm with PROB epsilon 58.4% 1.29 epsilon greedy, epsilon equals 0.1"
+  },
+  {
+   "start": 217.44,
+   "end": 225.28,
+   "text": "random arm with PROB epsilon 80% 1.37 optimistic q0 equals 5, greedy optimism drives early exploration"
+  },
+  {
+   "start": 225.28,
+   "end": 237.6,
+   "text": "68.9% 1.42 UCB, C equals 2 arg max a big Q, A, plus CSQ RT LNT slash N, A, big 85.6% 1.49,"
+  },
+  {
+   "start": 237.6,
+   "end": 243.6,
+   "text": "2000 independent runs times 1000 steps, pure greedy locks onto a sub-optimal arm in about"
+  },
+  {
+   "start": 243.6,
+   "end": 248.08,
+   "text": "two-thirds of runs, a little exploration more than doubles the optimal action rate,"
+  },
+  {
+   "start": 248.8,
+   "end": 255.92,
+   "text": "UCB explores directionally towards uncertain arms and does best, reading Sutton and Bartow,"
+  },
+  {
+   "start": 255.92,
+   "end": 257.92,
+   "text": "CH2 to 3."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Markov decision processes",
+   "start": 0.0,
+   "end": 27.42
+  },
+  {
+   "heading": "Bellman expectation equation",
+   "start": 27.42,
+   "end": 76.19
+  },
+  {
+   "heading": "The Bellman operator is a gamma -contraction",
+   "start": 76.19,
+   "end": 139.8
+  },
+  {
+   "heading": "Bellman optimality equation",
+   "start": 139.8,
+   "end": 172.91
+  },
+  {
+   "heading": "Multi-armed bandits ( rl/bandits.py )",
+   "start": 172.91,
+   "end": 257.76
+  }
+ ]
+}

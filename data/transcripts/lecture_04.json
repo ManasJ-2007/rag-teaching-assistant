@@ -1,0 +1,180 @@
+{
+ "lecture": 4,
+ "title": "Week 4: Q-learning and tabular control",
+ "source": "lecture_04.wav",
+ "duration": 145.5,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 3.2,
+   "text": "Week 4, Q-learning and tabular control."
+  },
+  {
+   "start": 3.2,
+   "end": 7.84,
+   "text": "Control means learning action values, so that acting greedily needs no model,"
+  },
+  {
+   "start": 7.84,
+   "end": 11.84,
+   "text": "pi, s, equals argmax aq, sa."
+  },
+  {
+   "start": 11.84,
+   "end": 18.48,
+   "text": "Sursa, on-policy, Q-learning, off-policy, update target rt plus 1 plus gamma q,"
+  },
+  {
+   "start": 18.48,
+   "end": 23.6,
+   "text": "st plus 1, at plus 1, rt plus 1 plus gamma max aq,"
+  },
+  {
+   "start": 23.6,
+   "end": 28.32,
+   "text": "st plus 1, a, learns the value of the epsilon greedy policy it follows the"
+  },
+  {
+   "start": 28.32,
+   "end": 32.96,
+   "text": "greedy, optimal, policy converges to q pi of the behavior policy,"
+  },
+  {
+   "start": 32.96,
+   "end": 36.4,
+   "text": "rightward arrow q as epsilon rightward arrow zero, q,"
+  },
+  {
+   "start": 36.4,
+   "end": 39.92,
+   "text": "under standard step size conditions both converge under the robins,"
+  },
+  {
+   "start": 39.92,
+   "end": 44.56,
+   "text": "monro conditions sum t alpha t equals inf t and sum t alpha t to inf t,"
+  },
+  {
+   "start": 44.56,
+   "end": 47.84,
+   "text": "provided every state action pair keeps being visited."
+  },
+  {
+   "start": 47.84,
+   "end": 52.4,
+   "text": "Code, rl slash tabular dot pi, with linearly decaying epsilon and random"
+  },
+  {
+   "start": 52.4,
+   "end": 57.76,
+   "text": "tie-breaking in argmax. Results, three seeds, greedy evaluation,"
+  },
+  {
+   "start": 57.76,
+   "end": 62.32,
+   "text": "script slash ron tabular dot pi. Environment value iteration,"
+  },
+  {
+   "start": 62.32,
+   "end": 65.76,
+   "text": "optimal, q-learning Sursa frozen lake four times four,"
+  },
+  {
+   "start": 65.76,
+   "end": 76.8,
+   "text": "slippery, success rate 0.729 0.734 plus or minus 0.0040.727 plus or minus 0.001 taxi,"
+  },
+  {
+   "start": 76.8,
+   "end": 85.28,
+   "text": "return 7.917.91 plus or minus 0.007.72 plus or minus 0.09 cliff walking,"
+  },
+  {
+   "start": 85.28,
+   "end": 89.84,
+   "text": "return 13.13 plus or minus 0.17 plus or minus 0."
+  },
+  {
+   "start": 89.84,
+   "end": 95.52,
+   "text": "Why Sursa walks the long way on cliff walking? Stepping off the cliff costs 100."
+  },
+  {
+   "start": 95.52,
+   "end": 99.84,
+   "text": "Q-learning's target uses the max over next actions, so it ignores the chance that"
+  },
+  {
+   "start": 99.84,
+   "end": 104.16,
+   "text": "exploration pushes it off the edge. It learns the optimal edge path,"
+  },
+  {
+   "start": 104.16,
+   "end": 109.44,
+   "text": "13 steps, 13. Sursa's target uses the action actually taken,"
+  },
+  {
+   "start": 109.44,
+   "end": 113.52,
+   "text": "including epsilon random ones, so sells next to the cliff look dangerous and it"
+  },
+  {
+   "start": 113.52,
+   "end": 119.28,
+   "text": "learns a safer path one row up, 17. Neither is wrong, Sursa optimizes the"
+  },
+  {
+   "start": 119.28,
+   "end": 122.56,
+   "text": "policy it actually runs, Q-learning the one it would run without"
+  },
+  {
+   "start": 122.56,
+   "end": 128.72,
+   "text": "exploration. Limitations that motivate DQN. A Q-table needs one entry port,"
+  },
+  {
+   "start": 128.72,
+   "end": 133.76,
+   "text": "state, action. Taxi has 500 states, but Cartpole's state is"
+  },
+  {
+   "start": 133.76,
+   "end": 138.64,
+   "text": "four continuous numbers and Atari's is 84 times 84 times 4 pixels."
+  },
+  {
+   "start": 138.72,
+   "end": 142.88,
+   "text": "We need function approximation, Q, SA, theta, which"
+  },
+  {
+   "start": 142.88,
+   "end": 147.28,
+   "text": "generalizes across similar states."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Week 4: Q-learning and tabular control",
+   "start": 0.0,
+   "end": 54.42
+  },
+  {
+   "heading": "Results (3 seeds, greedy evaluation; scripts/run tabular.py )",
+   "start": 54.42,
+   "end": 89.93
+  },
+  {
+   "heading": "Why SARSA walks the long way on CliffWalking",
+   "start": 89.93,
+   "end": 123.96
+  },
+  {
+   "heading": "Limitations that motivate DQN",
+   "start": 123.96,
+   "end": 145.46
+  }
+ ]
+}

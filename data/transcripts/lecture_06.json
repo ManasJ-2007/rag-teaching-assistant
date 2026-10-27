@@ -1,0 +1,250 @@
+{
+ "lecture": 6,
+ "title": "Week 6: Policy-gradient methods (REINFORCE, A2C, PPO)",
+ "source": "lecture_06.wav",
+ "duration": 295.3,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 7.68,
+   "text": "Week 6, policy gradient methods, reinforce, A2C, PPO. Instead of learning values and acting"
+  },
+  {
+   "start": 7.68,
+   "end": 14.56,
+   "text": "greedily, parametries the policy pi theta, amid S, directly and climb J, theta, equals E tau"
+  },
+  {
+   "start": 14.56,
+   "end": 20.4,
+   "text": "sim pi theta G0. This works for stochastic and continuous policies, and small parameter"
+  },
+  {
+   "start": 20.4,
+   "end": 25.36,
+   "text": "changes give smooth changes in behavior. Policy gradient theorem, derivation."
+  },
+  {
+   "start": 26.16,
+   "end": 33.44,
+   "text": "Nablat theta J equals Nablat theta sum tau P theta, tau G, tau, equals sum tau P theta, tau,"
+  },
+  {
+   "start": 33.44,
+   "end": 40.16,
+   "text": "Nablat theta log P theta, tau G, tau, equals E tau big sum t Nablat theta log pi theta,"
+  },
+  {
+   "start": 40.16,
+   "end": 45.84,
+   "text": "AT mid ST, G, tau, big. The second step is the log derivative trick."
+  },
+  {
+   "start": 46.56,
+   "end": 51.44,
+   "text": "The dynamics terms of log P theta, tau, do not depend on theta, week one."
+  },
+  {
+   "start": 52.16,
+   "end": 58.4,
+   "text": "Rewards earned before time t cannot depend on AT, causality, so G, tau, can be replaced by"
+  },
+  {
+   "start": 58.4,
+   "end": 64.4,
+   "text": "the reward to go GT. That gives reinforce, Nablat theta J approximates some t Nablat theta log"
+  },
+  {
+   "start": 64.4,
+   "end": 73.28,
+   "text": "pi theta, AT mid ST, GT, baselines, unbiased variance reduction. For any B, S, that does not"
+  },
+  {
+   "start": 73.28,
+   "end": 81.52,
+   "text": "depend on the action, EA sim pi Nablat theta log pi theta, amid S, B, S, equals B, S, Nablat theta"
+  },
+  {
+   "start": 81.52,
+   "end": 91.12,
+   "text": "sum of pi theta, amid S, equals B, S, Nablat theta 1 equals 0. So GT, B, ST, gives the same expected"
+  },
+  {
+   "start": 91.12,
+   "end": 99.28,
+   "text": "gradient. With B equals V, S, the weight becomes the advantage AT equals GT, V, ST, how much better"
+  },
+  {
+   "start": 99.36,
+   "end": 106.72,
+   "text": "than usual was this action. Measured, script slash PG variants.py, cartpole, 500 sampled"
+  },
+  {
+   "start": 106.72,
+   "end": 114.48,
+   "text": "episodes per policy, gradient of the policy network policy being evaluated TRCOVG, no baseline TRCOVG,"
+  },
+  {
+   "start": 114.48,
+   "end": 120.96,
+   "text": "with V, S, baseline variance reduction cosine sim of mean gradients early, 100 episodes,"
+  },
+  {
+   "start": 120.96,
+   "end": 131.44,
+   "text": "return 114, 2.63 times 101.89 times 1028 percent 1.000 near solved, 300 episodes,"
+  },
+  {
+   "start": 131.44,
+   "end": 141.6,
+   "text": "return 456, 2.04 times 10.48 times 1053.7 percent 0.993 the baseline leaves the expected"
+  },
+  {
+   "start": 141.6,
+   "end": 147.12,
+   "text": "gradient unchanged, cosine similarity one, as the proof above predicts, but removes."
+  },
+  {
+   "start": 147.92,
+   "end": 152.88,
+   "text": "Up to 54 percent of its variance. The effect grows as returns get longer,"
+  },
+  {
+   "start": 152.88,
+   "end": 156.56,
+   "text": "because GT then has a large common offset that the baseline subtracts out."
+  },
+  {
+   "start": 157.28,
+   "end": 162.8,
+   "text": "Actor critic, A2C. Replace the Monte Carlo return with a bootstrapped estimate,"
+  },
+  {
+   "start": 162.8,
+   "end": 170.24,
+   "text": "using the critic's TD error as the advantage, AT approximate RT plus gamma V, ST plus 1, V, ST."
+  },
+  {
+   "start": 170.96,
+   "end": 174.8,
+   "text": "It updates every end steps, with no need to wait for the episode to end."
+  },
+  {
+   "start": 175.52,
+   "end": 178.56,
+   "text": "It has lower variance than reinforced but is biased by the critic."
+  },
+  {
+   "start": 179.36,
+   "end": 186.32,
+   "text": "G, lambda, interpolates between the two, at AT equals some L, gamma lambda, L delta T plus L,"
+  },
+  {
+   "start": 187.2,
+   "end": 192.32,
+   "text": "PPO, clip surrogate objective. A large policy step can collapse performance."
+  },
+  {
+   "start": 193.2,
+   "end": 201.84,
+   "text": "PPO maximizes L-clip, theta, equals ET big min big, rho T at AT, clip, rho T, one epsilon, one plus"
+  },
+  {
+   "start": 201.92,
+   "end": 210.56,
+   "text": "epsilon, at AT big, big, do add rho T equals frack pi theta, AT mid ST, pi theta old, AT mid ST."
+  },
+  {
+   "start": 211.36,
+   "end": 216.48,
+   "text": "Once rho T leaves one epsilon, one plus epsilon in the direction that would increase the objective,"
+  },
+  {
+   "start": 216.48,
+   "end": 222.32,
+   "text": "the gradient is zero. That gives a cheap trust region, so several epochs of mini-batch SGD"
+  },
+  {
+   "start": 222.32,
+   "end": 228.8,
+   "text": "on the same rollout are safe. The implementation in RL slash policy gradient.py uses epsilon equals"
+  },
+  {
+   "start": 228.8,
+   "end": 235.68,
+   "text": "0.2, d lambda equals 0.95, 10 epochs, advantage normalization and learning rate and Elling."
+  },
+  {
+   "start": 236.4,
+   "end": 243.76,
+   "text": "Value-based VS policy-based results. See the main readme for cartpole, DQ and VS reinforce VS"
+  },
+  {
+   "start": 243.76,
+   "end": 252.64,
+   "text": "two CVS PPO and lunar lander, reinforce VS two CVS PPO. In brief, PPO solved cartpole on every seed"
+  },
+  {
+   "start": 252.64,
+   "end": 258.4,
+   "text": "with a stable curve, in a median of 38.7 k steps, and was the only method to solve lunar"
+  },
+  {
+   "start": 258.4,
+   "end": 266.0,
+   "text": "lander on every seed, greedy 245 plus or minus 26. Reinforce reached a perfect greedy cartpole"
+  },
+  {
+   "start": 266.0,
+   "end": 272.0,
+   "text": "policy but oscillated during training. On lunar lander it reached 108 plus or minus 61."
+  },
+  {
+   "start": 272.8,
+   "end": 279.84,
+   "text": "Single environment A2C failed on lunar lander at this budget, 9 plus or minus 24. DQN was the most"
+  },
+  {
+   "start": 279.84,
+   "end": 287.84,
+   "text": "seed-sensitive. Reading, Sutton and Bartow, CH13, Shulman ETAL, Proximal Policy Optimization"
+  },
+  {
+   "start": 287.84,
+   "end": 295.12,
+   "text": "Algorithms, 2017, and High-Dimensional Continuous Control Using Key, 2016."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Week 6: Policy-gradient methods (REINFORCE, A2C, PPO)",
+   "start": 0.0,
+   "end": 23.16
+  },
+  {
+   "heading": "Policy-gradient theorem (derivation)",
+   "start": 23.16,
+   "end": 67.86
+  },
+  {
+   "heading": "Baselines: unbiased variance reduction",
+   "start": 67.86,
+   "end": 157.32
+  },
+  {
+   "heading": "Actor-critic (A2C)",
+   "start": 157.32,
+   "end": 187.12
+  },
+  {
+   "heading": "PPO: clipped surrogate objective",
+   "start": 187.12,
+   "end": 236.42
+  },
+  {
+   "heading": "Value-based vs policy-based: results",
+   "start": 236.42,
+   "end": 295.34
+  }
+ ]
+}

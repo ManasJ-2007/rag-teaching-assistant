@@ -1,0 +1,165 @@
+{
+ "lecture": 3,
+ "title": "Week 3: Dynamic programming and temporal-difference learning",
+ "source": "lecture_03.wav",
+ "duration": 196.7,
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 7.28,
+   "text": "1. Policy iteration, rl slash dp dot pi. 1 policy evaluation, compute v pi exactly with,"
+  },
+  {
+   "start": 7.28,
+   "end": 16.4,
+   "text": "i, gamma p pi, minus 1 r pi. 2. Policy improvement, pi, s, equals arc max a big r, sa, plus gamma"
+  },
+  {
+   "start": 16.4,
+   "end": 23.28,
+   "text": "sum sp, s mid sa, v pi, s, big. 3. Repeat until the policy stops changing."
+  },
+  {
+   "start": 24.16,
+   "end": 33.36,
+   "text": "Policy improvement theorem. If q pi, s, pi, s, g e v pi, s, for all s, then v pi, g e v pi."
+  },
+  {
+   "start": 34.0,
+   "end": 40.8,
+   "text": "The greedy policy satisfies this by construction. A finite MDP has finitely many deterministic policies,"
+  },
+  {
+   "start": 40.8,
+   "end": 46.48,
+   "text": "so policy iteration terminates at pi. Value iteration, rl slash tabular dot pi."
+  },
+  {
+   "start": 47.12,
+   "end": 53.6,
+   "text": "Apply the Bellman Optimal ID operator directly, vk plus 1, s, equals max a sum sp,"
+  },
+  {
+   "start": 53.6,
+   "end": 60.8,
+   "text": "s mid sa, r plus gamma vk, s. Each sweep is cheap, but convergence is only geometric,"
+  },
+  {
+   "start": 60.8,
+   "end": 68.64,
+   "text": "at rate gamma. Frozen lake, slippery, gamma equals 0.99, policy iteration value iteration,"
+  },
+  {
+   "start": 68.64,
+   "end": 74.4,
+   "text": "told 1 times 10 to the power of negative 10th, max v pi v6 optimal success rate 4 times 4"
+  },
+  {
+   "start": 74.4,
+   "end": 83.76,
+   "text": "3 improvement steps 571 sweeps 2.8 times 1072.9 percent 8 times 8 3 improvement steps 662 sweeps"
+  },
+  {
+   "start": 83.76,
+   "end": 89.76,
+   "text": "3.1 times 1062.7 percent both methods reach the same v, to numerical precision."
+  },
+  {
+   "start": 90.56,
+   "end": 96.72,
+   "text": "Policy iteration takes very few, expensive, steps, while value iteration takes many cheap ones."
+  },
+  {
+   "start": 97.44,
+   "end": 102.8,
+   "text": "Even the optimal policy reaches the goal only 73% of the time on the 4 times 4 map,"
+  },
+  {
+   "start": 102.88,
+   "end": 107.04,
+   "text": "because the ice is slippery, the intended move happens with probability one-third only."
+  },
+  {
+   "start": 107.76,
+   "end": 114.56,
+   "text": "Temporal difference learning, rl slash td dot pi. Without a model, estimate v pi from experience,"
+  },
+  {
+   "start": 114.56,
+   "end": 124.08,
+   "text": "Monte Carlo, v, st, left arrow v, st, plus alpha gt, v, st. The target is the full return,"
+  },
+  {
+   "start": 124.08,
+   "end": 127.36,
+   "text": "which is unbiased but high variance and has to wait for the episode to end."
+  },
+  {
+   "start": 128.16,
+   "end": 137.6,
+   "text": "td, 0v, st, left arrow v, st, plus alpha rt plus 1 plus gamma v, st plus 1, v, st."
+  },
+  {
+   "start": 138.32,
+   "end": 144.0,
+   "text": "It bootstraps from its own estimate, lower variance, biased early on, and it can update online."
+  },
+  {
+   "start": 144.72,
+   "end": 152.0,
+   "text": "The bracket delta t equals rt plus 1 plus gamma v, st plus 1, v, st, is the td error."
+  },
+  {
+   "start": 152.8,
+   "end": 157.12,
+   "text": "Sursa, q-learning, dqn and actor critic all minimize versions of it."
+  },
+  {
+   "start": 157.92,
+   "end": 163.68,
+   "text": "Random walk experiment, Sutton and Bartow, example 6.2, true values 1-sixth."
+  },
+  {
+   "start": 164.56,
+   "end": 174.56,
+   "text": "5-sixths, 100 runs method best alpha rms error after 100 episodes td, 0, 0.050, 0.038 constant alpha"
+  },
+  {
+   "start": 174.56,
+   "end": 183.36,
+   "text": "mc0.020.077 td, 0, reaches 51% lower error than the best Monte Carlo setting with the same data."
+  },
+  {
+   "start": 184.08,
+   "end": 189.28,
+   "text": "Bootstrapping exploits the Markov structure, C's value really is the average of B's and D's,"
+  },
+  {
+   "start": 189.28,
+   "end": 192.0,
+   "text": "while mc treats every state's return independently."
+  },
+  {
+   "start": 192.0,
+   "end": 196.64,
+   "text": "Reading, Sutton and Bartow, CH-426."
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Policy iteration ( rl/dp.py )",
+   "start": 0.0,
+   "end": 43.59
+  },
+  {
+   "heading": "Value iteration ( rl/tabular.py )",
+   "start": 43.59,
+   "end": 107.81
+  },
+  {
+   "heading": "Temporal-difference learning ( rl/td.py )",
+   "start": 107.81,
+   "end": 196.72
+  }
+ ]
+}

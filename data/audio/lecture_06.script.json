@@ -1,0 +1,38 @@
+{
+ "lecture": 6,
+ "title": "Week 6: Policy-gradient methods (REINFORCE, A2C, PPO)",
+ "duration": 295.3,
+ "sections": [
+  {
+   "heading": "Week 6: Policy-gradient methods (REINFORCE, A2C, PPO)",
+   "start": 0.0,
+   "end": 23.16
+  },
+  {
+   "heading": "Policy-gradient theorem (derivation)",
+   "start": 23.16,
+   "end": 67.86
+  },
+  {
+   "heading": "Baselines: unbiased variance reduction",
+   "start": 67.86,
+   "end": 157.32
+  },
+  {
+   "heading": "Actor-critic (A2C)",
+   "start": 157.32,
+   "end": 187.12
+  },
+  {
+   "heading": "PPO: clipped surrogate objective",
+   "start": 187.12,
+   "end": 236.42
+  },
+  {
+   "heading": "Value-based vs policy-based: results",
+   "start": 236.42,
+   "end": 295.34
+  }
+ ],
+ "text": "Week 6: Policy-gradient methods (REINFORCE, A2C, PPO). Instead of learning values and acting greedily, parameterise the policy pi theta(a mid s) directly and climb J(theta) = E tau sim pi theta [G 0] . This works for stochastic and continuous policies, and small parameter changes give smooth changes in behaviour. Policy-gradient theorem (derivation). nabla theta J = nabla theta sum tau p theta(tau) G(tau) = sum tau p theta(tau) ,nabla theta log p theta(tau) , G(tau) = E tauBig[sum t nabla theta log pi theta(a t mid s t) , G(tau)Big]. The second step is the log-derivative trick. The dynamics terms of log p theta(tau) do not depend on theta (Week 1). Rewards earned before time t cannot depend on a t (causality), so G(tau) can be replaced by the reward-to-go G t . That gives REINFORCE : nabla theta J approx sum t nabla theta log pi theta(a t mid s t) , G t . Baselines: unbiased variance reduction. For any b(s) that does not depend on the action, E a sim pi [nabla theta log pi theta(a mid s) , b(s)] = b(s) ,nabla theta sum a pi theta(a mid s) = b(s) ,nabla theta 1 = 0 . So G t - b(s t) gives the same expected gradient. With b = V(s) , the weight becomes the advantage A t = G t - V(s t) : \"how much better than usual was this action?\" Measured ( scripts/pg variance.py , CartPole, 500 sampled episodes per policy, gradient of the policy network): Policy being evaluated tr Cov[g], no baseline tr Cov[g], with V(s) baseline Variance reduction Cosine sim. of mean gradients Early (100 episodes, return ≈ 114) 2.63 × 10⁶ 1.89 × 10⁶ 28.0% 1.000 Near-solved (300 episodes, return ≈ 456) 2.04 × 10⁷ 9.48 × 10⁶ 53.7% 0.993 The baseline leaves the expected gradient unchanged (cosine similarity ≈ 1, as the proof above predicts) but removes up to 54% of its variance . The effect grows as returns get longer, because G t then has a large common offset that the baseline subtracts out. Actor-critic (A2C). Replace the Monte-Carlo return with a bootstrapped estimate, using the critic's TD error as the advantage: A t approx r t + gamma V(s t+1 ) - V(s t) . It updates every n steps, with no need to wait for the episode to end. It has lower variance than REINFORCE but is biased by the critic. GAE( lambda ) interpolates between the two: hat A t = sum l (gammalambda) l delta t+l . PPO: clipped surrogate objective. A large policy step can collapse performance. PPO maximises L CLIP (theta) = E tBig[minbig(rho t hat A t, clip(rho t, 1-epsilon, 1+epsilon) ,hat A tbig)Big], qquad rho t = frac pi theta(a t mid s t) pi theta old (a t mid s t) . Once rho t leaves [1-epsilon, 1+epsilon] in the direction that would increase the objective, the gradient is zero. That gives a cheap trust region, so several epochs of mini-batch SGD on the same rollout are safe. The implementation in rl/policy gradient.py uses epsilon = 0.2, GAE lambda = 0.95, 10 epochs, advantage normalisation and learning-rate annealing. Value-based vs policy-based: results. See the main README for CartPole (DQN vs REINFORCE vs A2C vs PPO) and LunarLander (REINFORCE vs A2C vs PPO). In brief: - PPO solved CartPole on every seed with a stable curve, in a median of 38.7k steps, and was the only method to solve LunarLander on every seed (greedy 245 ± 26). - REINFORCE reached a perfect greedy CartPole policy but oscillated during training. On LunarLander it reached 108 ± 61. - Single-environment A2C failed on LunarLander at this budget (9 ± 24). - DQN was the most seed-sensitive. Reading: Sutton & Barto, Ch. 13; Schulman et al., \"Proximal Policy Optimization Algorithms\" (2017) and \"High-Dimensional Continuous Control Using GAE\" (2016)."
+}

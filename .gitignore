@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+.venv/
+# generated lecture audio is ~75 MB; recreate with scripts/make_lecture_audio.py
+data/audio/*.wav
