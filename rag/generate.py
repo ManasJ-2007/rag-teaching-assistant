@@ -13,12 +13,14 @@ import urllib.request
 import numpy as np
 
 SYSTEM = ("You are a teaching assistant for a reinforcement learning course. Answer the student's question "
-          "using ONLY the lecture excerpts provided. Cite the lecture (and timestamp if given) you used. "
+          "in 2 to 5 sentences, using ONLY the lecture excerpts provided. Do not add facts that are not in the "
+          "excerpts. End with one line in exactly this form: 'Source: Lecture <number>, <section>' (add "
+          "'@ <timestamp>' if the excerpt has one), naming the excerpt you used most. "
           "If the excerpts do not contain the answer, say so and suggest which lecture to revisit.")
 
 
 def build_prompt(question, chunks):
-    context = "\n\n".join(f"[{i + 1}] {c.location()}\n{c.text}" for i, c in enumerate(chunks))
+    context = "\n\n".join(f"Excerpt from {c.location()}:\n{c.text}" for c in chunks)
     return f"Lecture excerpts:\n{context}\n\nStudent question: {question}\nAnswer:"
 
 

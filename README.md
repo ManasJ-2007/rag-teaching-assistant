@@ -35,6 +35,28 @@ Full tables (Hit@1/3/5, MRR, lecture-level accuracy and latency for every retrie
 - **Re-ranking matters most on noisy transcripts.** Section Hit@1 rises from 60.9% to 76.1%, because the cross-encoder reads the question and passage together instead of comparing two separate vectors.
 - **Spoken lectures are harder than written notes** (76% vs 91% section Hit@1), but the right *video* is still the first result 91% of the time.
 
+## Answers from a local LLM (Llama 3.2 via Ollama)
+
+The retrieved top-3 chunks and the question go to **Llama 3.2 (3B)** running locally with Ollama. The prompt tells it to answer in 2 to 5 sentences **only from the excerpts** and to end with a `Source: Lecture N, section` line. `scripts/evaluate_answers.py` runs all 46 questions and saves every answer to [`results/answers_notes.md`](results/answers_notes.md).
+
+| | Result |
+|---|---|
+| Answers citing the **correct lecture** | **82.6%** (first prompt version: 60.9%) |
+| Answers citing any lecture | 93.5% |
+| Correct lecture among the retrieved chunks | 97.8% |
+| Median time per answer | 4.4 s on a laptop CPU |
+
+**What changed between the two prompt versions:** the first prompt numbered the excerpts `[1] [2] [3]`, and the 3B model often confused those numbers with lecture numbers or left the citation out. Labelling each excerpt with its lecture and asking for a fixed `Source:` line raised correct citations from 60.9% to 82.6%.
+
+Example (question: *"What does clipping the probability ratio achieve in PPO?"*):
+```
+Clipping the probability ratio achieves a cheap trust region, so that once the ratio leaves the range
+[1-epsilon, 1+epsilon] in the direction that would increase the objective, the gradient is zero. This provides
+a cheap way to prevent large policy steps from collapsing performance.
+
+Source: Lecture 6, Week 6: Policy-gradient methods (REINFORCE, A2C, PPO) | PPO: clipped surrogate objective
+```
+
 ## How it works
 
 | Step | File | What it does |
@@ -63,6 +85,7 @@ python scripts/make_lecture_audio.py           # Windows: create the spoken lect
 python -m rag.transcribe data/audio            # Whisper -> data/transcripts/ (~8 min on CPU)
 python ask.py --corpus transcripts "What is the TD error?"
 python scripts/evaluate.py                     # retrieval + WER evaluation -> results/
+python scripts/evaluate_answers.py             # LLM answers for all 46 questions (needs `ollama pull llama3.2`)
 OLLAMA_MODEL=llama3.2 python ask.py --backend ollama "Explain the deadly triad"   # LLM answers
 ```
 
@@ -81,7 +104,7 @@ From the lectures:
 
 ## Limitations
 - The corpus is small (8 lectures, about 50 chunks), and I wrote the 46 questions myself. A larger course and questions from real students would be a stronger test.
-- Only retrieval is measured. Answer quality with an LLM backend (faithfulness and correctness) is not evaluated here.
+- Answer quality is checked only partly: citations are scored automatically, and I read a sample of answers by hand. Most were correct, but the 3B model sometimes blends details (one answer called the DQN loss both squared error and Huber). A larger model or an LLM judge would give a stronger test of faithfulness.
 - The extractive fallback copies sentences verbatim, so formulas from transcripts read awkwardly. Use an LLM backend for fluent answers.
 
 ## Files
